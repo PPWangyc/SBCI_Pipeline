@@ -2,6 +2,7 @@
 #SBATCH -t 5-0:00:00 
 #SBATCH -o preproc_scilpy_%j.log
 #SBATCH --mem-per-cpu=20gb
+#SBATCH --output /home/ywang330/SBCI_Pipeline/HCP_example/output/sbatch_message.txt
 
 subj=${1}
 out=${2}
@@ -12,10 +13,10 @@ subdir=${out}/${subj}
 
 # CHANGE LOCATION TO YOUR SOURCE FILE
 echo "Sourcing .bashrc"
-source /home/user/bashrc
+source /home/ywang330/install.sh
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/home/user/project/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/HCP_example/sbci_config
 
 # CHANGE LOCATION TO FREESURFER WITH PERSONAL LICENSE
 fsdir=/software/freesurfer/6.0.0/freesurfer/

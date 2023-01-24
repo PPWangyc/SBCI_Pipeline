@@ -20,10 +20,10 @@ FODF_BVALS=(0 1000 2000 3000)
 # Change these to point to your local installation of SBCI
 ###########################################################################################
 
-PSC_PATH=/nas/longleaf/home/mrcole/PSC_Pipeline/
-SBCI_PATH=/nas/longleaf/home/mrcole/SBCI_Pipeline/
-FREESURFER_PATH=/nas/longleaf/apps/freesurfer/6.0.0/freesurfer/
-OUTPUT_PATH=/pine/scr/m/r/mrcole/ABCD/SBCI_AVG/
+PSC_PATH=/home/ywang330/PSC_Pipeline/
+SBCI_PATH=/home/ywang330/SBCI_Pipeline/
+FREESURFER_PATH=/software/freesurfer/6.0.0/bin/freesurfer/
+OUTPUT_PATH=/home/ywang330/SBCI_Pipeline/ABCD_example/output/SBCI_AVG/
 
 ###########################################################################################
 # SC options: N_RUN number of times to run SET in parallel (SET)

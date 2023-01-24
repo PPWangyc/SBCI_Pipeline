@@ -17,9 +17,14 @@ module load git
 ### LOAD ENVIRONMENT ###
 conda activate sbci
 ############### CREATE THE ENVIRONMENT. USED ONLY ONE TIME ###############
-
+# create env variable for SBCI
 export PATH="/home/ywang330/SBCI_Pipeline/scripts:$PATH" 
 export PYTHONPATH="/home/ywang330/SBCI_Pipeline:$PYTHONPATH"
+
+
+# create env variable for PSC
+export PATH="/home/ywang330/PSC_Pipeline/scripts:$PATH"
+export PYTHONPATH="/home/ywang330/PSC_Pipeline:$PYTHONPATH"
 
 scil_surface.py
 

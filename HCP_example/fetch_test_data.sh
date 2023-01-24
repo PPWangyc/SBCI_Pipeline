@@ -7,6 +7,7 @@
 # the subject to download
 SUBJECT=103818
 
+cd /scratch/ywang330
 mkdir -p raw_data/Functional
 mkdir -p raw_data/Diffusion
 

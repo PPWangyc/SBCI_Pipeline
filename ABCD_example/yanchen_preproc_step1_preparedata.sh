@@ -9,22 +9,22 @@ cd ..
 
 # flip dMRI
 cd dwi
-run_count=$(ls -f *[0-9]_dwi.nii.gz | wc -l)
+run_count=$(ls -f *_dwi.nii.gz | wc -l)
 
 # some subjects have multiple runs (if so, merge them into one)
 if [ ${run_count} -gt 1 ]; then
     # combine dwi image files
-    fslmerge -t dwi_all *[0-9]_dwi.nii.gz
+    fslmerge -t dwi_all *_dwi.nii.gz
 
     # combine b-value files
-    for f in $(ls *[0-9]_dwi.bval); do 
+    for f in $(ls *_dwi.bval); do 
         read -d '' -r -a bvals < ${f}
         length=${#bvals[@]}
         echo -n ' '${bvals[@]:0:length} >> bval_all.bval
     done
 
     # combine b-vector files
-    for f in $(ls *[0-9]_dwi.bvec | sed 's/\..*$//'); do
+    for f in $(ls *_dwi.bvec | sed 's/\..*$//'); do
         read -d '' -r -a bvals < ${f}.bval
         length=${#bvals[@]}
         read -d '' -r -a bvecs < ${f}.bvec

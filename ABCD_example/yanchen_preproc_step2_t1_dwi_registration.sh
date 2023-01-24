@@ -20,6 +20,9 @@ fi
 
 echo "Begin T1-DWI registration preprocessing: $(date)"
 
+data_dir="/home/ywang330/SBCI_Pipeline/example-subject/dwi_pipeline"
+cd $data_dir
+
 # folder for t1 preprocessing
 mkdir structure/
 
@@ -41,6 +44,9 @@ scil_extract_b0.py diffusion/data.nii.gz \
 	diffusion/b0.nii.gz \
 	--mean --b0_thr 10
 
+# to set FSL default env variables
+. ${FSLDIR}/etc/fslconf/fsl.sh
+
 # bet dwi
 bet diffusion/b0.nii.gz diffusion/b0_bet.nii.gz -m -R -f 0.10
 
@@ -54,6 +60,8 @@ N4BiasFieldCorrection -i diffusion/b0_bet.nii.gz \
 
 scil_apply_bias_field_on_dwi.py diffusion/dwi_bet.nii.gz diffusion/bias_field_b0.nii.gz \
         diffusion/dwi_n4.nii.gz --mask diffusion/b0_bet_mask.nii.gz -f
+
+# Bus error when execute scil_apply_bias_field_on_dwi.py
 
 # crop dwi
 scil_crop_volume.py diffusion/dwi_n4.nii.gz diffusion/dwi_cropped.nii.gz \

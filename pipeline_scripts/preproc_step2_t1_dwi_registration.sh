@@ -9,7 +9,7 @@
 # Updated for SBCI by Martin Cole
 
 #check & change this path according to your machine's configuration
-export template_dir="/home/mcole22/abcd_psc_pipeline/mni_152_sym_09c"
+export template_dir="/home/ywang330/SBCI_Pipeline/data/mni_152_sym_09c"
 
 # folder for t1 preprocessing
 mkdir structure/

@@ -7,7 +7,8 @@
 # Updated for SBCI by Martin Cole
 
 # flip T1
-cd anat
+anat_dir="/home/ywang330/SBCI_Pipeline/example-subject/anat"
+cd $anat_dir
 mrconvert T1.nii.gz -stride 1,2,3 T1.nii.gz -force
 cd ..
 

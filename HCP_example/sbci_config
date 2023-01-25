@@ -39,8 +39,8 @@ RESOLUTION=0.99
 # OUTPUTDIR (str) path to the location to save individual subject SBCI results
 ##############################################################################################
 
-REFDIR=/home/ywang330/SBCI_Pipeline/HCP_example/output/subjects_dir/103818/dwi_sbci_connectome/structure/fsaverage
-AVGDIR=/home/ywang330/SBCI_Pipeline/HCP_example/output/subjects_dir/103818/SBCI_AVG
+REFDIR=/scratch/ywang330/output/subjects_dir/103818/dwi_sbci_connectome/structure/fsaverage
+AVGDIR=/scratch/ywang330/output/subjects_dir/103818/SBCI_AVG
 OUTPUTDIR=./dwi_sbci_connectome/SBCI
 
 ###############################################################################################

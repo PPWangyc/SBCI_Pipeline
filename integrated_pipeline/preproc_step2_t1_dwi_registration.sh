@@ -12,10 +12,12 @@
 
 echo "Sourcing SBCI config file"
 source ${SBCI_CONFIG}
-
+SBCI_PATH="/home/ywang330/SBCI_Pipeline"
 if [ -z ${TEMPLATEDIR+x} ]; then 
     TEMPLATEDIR=${SBCI_PATH}/integrated_pipeline/mni_152_sym_09c
 fi
+echo "TEMPLATEDIR"
+echo $TEMPLATEDIR
 
 echo "Begin T1-DWI registration preprocessing: $(date)"
 
@@ -54,6 +56,7 @@ N4BiasFieldCorrection -i diffusion/b0_bet.nii.gz \
 scil_apply_bias_field_on_dwi.py diffusion/dwi_bet.nii.gz diffusion/bias_field_b0.nii.gz \
         diffusion/dwi_n4.nii.gz --mask diffusion/b0_bet_mask.nii.gz -f
 
+echo "done N4_DWI"
 # crop dwi
 scil_crop_volume.py diffusion/dwi_n4.nii.gz diffusion/dwi_cropped.nii.gz \
         --output_bbox diffusion/dwi_boundingBox.pkl -f
@@ -64,12 +67,15 @@ scil_crop_volume.py diffusion/b0_bet.nii.gz diffusion/b0_cropped.nii.gz \
 scil_crop_volume.py diffusion/b0_bet_mask.nii.gz diffusion/b0_mask_cropped.nii.gz \
         --input_bbox diffusion/dwi_boundingBox.pkl -f
 
+echo "done crop dwi"
 # dwi normalization
 dwinormalise individual \
         diffusion/dwi_cropped.nii.gz \
         diffusion/b0_cropped.nii.gz \
         diffusion/dwi_normalized.nii.gz \
         -fslgrad diffusion/flip_x.bvec diffusion/flip_x.bval -force
+
+echo "done dwi normalization"
 
 # resample the dti image into 1x1x1
 scil_resample_volume.py diffusion/dwi_normalized.nii.gz \
@@ -88,6 +94,8 @@ mrcalc diffusion/dwi_resample_clipped.nii.gz \
 	diffusion/mask_resample.nii.gz \
         -mult diffusion/dwi_resampled.nii.gz -quiet
 
+echo "done resample dti image into 1x1x1"
+
 # resample b0
 scil_extract_b0.py diffusion/dwi_resampled.nii.gz \
 	diffusion/flip_x.bval \
@@ -97,6 +105,7 @@ scil_extract_b0.py diffusion/dwi_resampled.nii.gz \
 
 mrthreshold diffusion/b0_resampled.nii.gz diffusion/b0_mask_resampled.nii.gz --abs 0.00001
 
+echo "done resample b0"
 
 ################################################################### 
 ######################## t1 preprocessing #########################
@@ -109,6 +118,7 @@ N4BiasFieldCorrection -i structure/t1_denoised.nii.gz \
         -o [structure/t1_n4.nii.gz, structure/bias_field_t1.nii.gz] \
         -c [300x150x75x50, 1e-6] -v 1
 
+echo "denoise and bias field correction for t1 image"
 # bet t1
 antsBrainExtraction.sh -d 3 -a structure/t1_n4.nii.gz -e ${TEMPLATEDIR}/t1/t1_template.nii.gz \
         -o bet/ -m ${TEMPLATEDIR}/t1/t1_brain_probability_map.nii.gz -u 0
@@ -116,14 +126,14 @@ antsBrainExtraction.sh -d 3 -a structure/t1_n4.nii.gz -e ${TEMPLATEDIR}/t1/t1_te
 mrcalc structure/t1_n4.nii.gz bet/BrainExtractionMask.nii.gz -mult structure/t1_bet.nii.gz -force
 
 mv bet/BrainExtractionMask.nii.gz structure/t1_bet_mask.nii.gz
-
+echo "bet t1"
 # crop t1
 scil_crop_volume.py structure/t1_bet.nii.gz structure/t1_bet_cropped.nii.gz \
         --output_bbox structure/t1_boundingBox.pkl -f
 
 scil_crop_volume.py structure/t1_bet_mask.nii.gz structure/t1_bet_mask_cropped.nii.gz \
         --input_bbox structure/t1_boundingBox.pkl -f
-
+echo "done crop t1"
 
 ######################################################################  
 ########### dwi preprocessing - get ready for tracking ###############
@@ -137,14 +147,14 @@ scil_crop_volume.py structure/t1_bet_mask.nii.gz structure/t1_bet_mask_cropped.n
 scil_extract_dwi_shell.py diffusion/dwi_resampled.nii.gz \
         diffusion/flip_x.bval diffusion/flip_x.bvec ${DTI_BVALS[*]} diffusion/dwi_dti.nii.gz \
         diffusion/dti.bval diffusion/dti.bvec -t 20 -f
-
+echo "done extract data for dti"
 # extract data for fodf
 scil_extract_dwi_shell.py diffusion/dwi_resampled.nii.gz \
         diffusion/flip_x.bval diffusion/flip_x.bvec ${FODF_BVALS[*]} diffusion/dwi_fodf.nii.gz \
         diffusion/fodf.bval diffusion/fodf.bvec -t 20 -f
 
 mkdir diffusion/dti
-
+echo "done extract data for fodf"
 # compute dti metrics
 scil_compute_dti_metrics.py diffusion/dwi_dti.nii.gz diffusion/dti.bval diffusion/dti.bvec \
 	--mask diffusion/b0_mask_resampled.nii.gz \
@@ -157,7 +167,7 @@ scil_compute_dti_metrics.py diffusion/dwi_dti.nii.gz diffusion/dti.bval diffusio
         --tensor diffusion/dti/tensor.nii.gz \
         --non-physical diffusion/dti/nonphysical.nii.gz \
         --pulsation diffusion/dti/pulsation.nii.gz -f
-
+echo "done compute dti metrics"
 ################################################
 ####### registration between dti and t1 ########
 ################################################
@@ -193,7 +203,7 @@ mv output1Warp.nii.gz structure/output1Warp.nii.gz
 antsApplyTransforms -d 3 -i structure/t1_bet_mask_cropped.nii.gz -r structure/t1_warped.nii.gz \
         -o structure/t1_mask_warped.nii.gz -n NearestNeighbor \
         -t structure/output1Warp.nii.gz structure/output0GenericAffine.mat
-
+echo "done: registration between t1 and diffusion imaging data can use multiple threads"
 # for freesurfer
 antsApplyTransforms -d 3 -i structure/t1_n4.nii.gz -r structure/t1_n4.nii.gz \
         -o structure/t1_wholebrain_warped.nii.gz -n Linear \

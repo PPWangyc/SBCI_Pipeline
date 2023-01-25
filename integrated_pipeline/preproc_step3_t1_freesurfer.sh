@@ -4,7 +4,7 @@
 
 echo "Begin T1 Freesurfer preprocessing: $(date)"
 
-cd structure
+cd /scratch/ywang330/output/subjects_dir/103818/dwi_pipeline/structure
 
 export SUBJECTS_DIR=$(pwd)
 

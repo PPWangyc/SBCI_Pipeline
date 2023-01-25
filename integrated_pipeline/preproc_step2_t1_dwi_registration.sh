@@ -144,11 +144,13 @@ echo "done crop t1"
 # b-values  for bis data include 0, 1000, 2000
 
 # extract data for dti
+DTI_BVALS="0 1000"
 scil_extract_dwi_shell.py diffusion/dwi_resampled.nii.gz \
         diffusion/flip_x.bval diffusion/flip_x.bvec ${DTI_BVALS[*]} diffusion/dwi_dti.nii.gz \
         diffusion/dti.bval diffusion/dti.bvec -t 20 -f
 echo "done extract data for dti"
 # extract data for fodf
+FODF_BVALS="0 1000 2000 3000"
 scil_extract_dwi_shell.py diffusion/dwi_resampled.nii.gz \
         diffusion/flip_x.bval diffusion/flip_x.bvec ${FODF_BVALS[*]} diffusion/dwi_fodf.nii.gz \
         diffusion/fodf.bval diffusion/fodf.bvec -t 20 -f

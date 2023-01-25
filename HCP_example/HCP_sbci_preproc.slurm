@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -t 3-0:00:00 
 #SBATCH -o preproc_scilpy_%j.log
-#SBATCH --mem-per-cpu=100gb
+#SBATCH --mem-per-cpu=256gb
 #SBATCH --output /home/ywang330/SBCI_Pipeline/HCP_example/sbatch_message.txt
 
 subj=${1}

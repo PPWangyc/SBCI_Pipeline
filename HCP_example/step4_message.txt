@@ -1,0 +1,6 @@
+Begin FODF preprocessing: Wed Jan 25 16:20:46 EST 2023
+WARNING:root:Warning: no b=0 image. Setting b0_threshold to bvals.min() = 5.0
+WARNING:root:No white matter mask specified! mask_data will be used instead, if it has been supplied. 
+Be *VERY* careful about the estimation of the fiber response function to ensure no invalid voxel was used.
+WARNING:root:Warning: No b=0 image. Setting b0_threshold to the minimum bvalue: 5.0
+Finished FODF preprocessing: Wed Jan 25 16:43:00 EST 2023

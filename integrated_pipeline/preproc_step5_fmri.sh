@@ -4,26 +4,29 @@ echo "Sourcing SBCI config file"
 source ${SBCI_CONFIG}
 
 echo "Sourcing FREESURFER_HOME"
+FREESURFER_PATH=/software/freesurfer/6.0.0
 source ${FREESURFER_PATH}/SetUpFreeSurfer.sh
 
 echo "Begin FSFast fMRI preprocessing: $(date)"
-export SUBJECTS_DIR=$(pwd)/dwi_sbci_connectome/structure
+export SUBJECTS_DIR=$(pwd)/dwi_pipeline/structure
 
 cd fsfast
 echo t1_freesurfer > subjectname
 
-SUBJECT_ID=.
+SUBJECT_ID=t1_freesurfer
 
 # preprocess the BOLD time series for each run separately
-preproc-sess -s ${SUBJECT_ID} -fwhm 5 -stc siemens -surface fsaverage lhrh -per-run -fsd bold -mni305 -force
+# preproc-sess -s ${SUBJECT_ID} -fwhm 5 -stc siemens -surface fsaverage lhrh -per-run -fsd bold -mni305 -force
+
+echo "done preprocess the BOLD time series for each run separately"
 
 # configure the nuisance variables
-fcseed-config -wm -fcname wm.dat -fsd bold -mean -cfg wm.config -force
-fcseed-config -vcsf -fcname vcsf.dat -fsd bold -mean -cfg vcsf.config -force
+# fcseed-config -wm -fcname wm.dat -fsd bold -mean -cfg wm.config -force
+# fcseed-config -vcsf -fcname vcsf.dat -fsd bold -mean -cfg vcsf.config -force
 
-fcseed-sess -s ${SUBJECT_ID} -cfg wm.config -force
-fcseed-sess -s ${SUBJECT_ID} -cfg vcsf.config -force
-
+# fcseed-sess -s ${SUBJECT_ID} -cfg wm.config -force
+# fcseed-sess -s ${SUBJECT_ID} -cfg vcsf.config -force
+echo "Functional Preprocessing Complete."
 ###########################################################################################
 # surface-based analysis registered to fsaverage, or volume-based mni305 for subcortical
 # separate analysis for each run 
@@ -95,7 +98,7 @@ mkanalysis-sess -analysis fc.mni \
     -lpf 0.08 \
     -inorm \
     -force
-
+echo "done mkanalysis-sess"
 # regress out the nuisance variables for each run separately
 selxavg3-sess -analysis fc.surface.lh -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
 selxavg3-sess -analysis fc.surface.rh -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
@@ -104,7 +107,7 @@ selxavg3-sess -analysis fc.mni -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -for
 # find the separate runs and move the final BOLD timeseries' to their own folders
 cd ..
 
-find ./fsfast/bold/ -regextype sed -regex ".*/[0-9]\+$" -type d -printf "%f\n" > ./fcruns
+find ./fsfast/t1_freesurfer/bold/ -regextype sed -regex ".*/[0-9]\+$" -type d -printf "%f\n" > ./fcruns
 
 while read BOLDRUN; do
   mkdir -p fmri/bold/${BOLDRUN}

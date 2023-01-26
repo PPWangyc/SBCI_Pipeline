@@ -73,12 +73,12 @@ source ${scripts}/preproc_step2_t1_dwi_registration.sh
 echo "finish step2"
 source ${scripts}/preproc_step3_t1_freesurfer.sh
 echo "finish step3"
-
+source ${scripts}/preproc_step4_fodf_estimation.sh
+echo "finish step4"
 # once Step3 is complete, the functional preprocessing can begin in parallel with diffusion
-sbatch -o ${subdir}/preproc_fsfast_${subj}.log ${options} \
-	${scripts}/preproc_step4_fmri.sh ${subdir} ${fsdir} ${scripts}/config_files
+sbatch -o ${options} ${scripts}/preproc_step5_fmri.sh
+echo "finish step5"
 
-source ${scripts}/preproc_step5_fodf_estimation.sh
 source ${scripts}/set_step1_preparedata.sh
 
 echo "Starting parallel tracking jobs for SET."

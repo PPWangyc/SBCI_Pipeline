@@ -39,9 +39,9 @@ RESOLUTION=0.99
 # OUTPUTDIR (str) path to the location to save individual subject SBCI results
 ##############################################################################################
 
-REFDIR=/home/user/project/subjects/reference_subject/dwi_sbci_connectome/structure/fsaverage
+REFDIR=/home/user/project/subjects/reference_subject/dwi_pipeline/structure/fsaverage
 AVGDIR=/home/user/project/subjects/SBCI_AVG
-OUTPUTDIR=./dwi_sbci_connectome/SBCI
+OUTPUTDIR=./dwi_pipeline/SBCI
 
 ###############################################################################################
 # GROUP_PARCELLATIONS [str] list of parcellations to use when calculating high res connectomes

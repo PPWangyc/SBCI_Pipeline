@@ -1,27 +1,29 @@
 #!/bin/bash
 #SBATCH -t 5-0:00:00 
 #SBATCH -o preproc_scilpy_%j.log
-#SBATCH --mem-per-cpu=20gb
+#SBATCH --mem-per-cpu=256gb
+#SBATCH --output /home/ywang330/SBCI_Pipeline/HCP_example/sbatch_message.txt
 
-subj=${1}
-out=${2}
-data=${3}
-scripts=${4}
+subj=103818
+out=/scratch/ywang330/sbci/subjects_dir
+data=/scratch/ywang330/raw_data
+scripts=/home/ywang330/SBCI_Pipeline/pipeline_scripts
 
 subdir=${out}/${subj}
 
 # CHANGE LOCATION TO YOUR SOURCE FILE
-echo "Sourcing .bashrc"
-source /home/user/bashrc
+# echo "Sourcing .bashrc"
+# source /home/user/bashrc
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
 export SBCI_CONFIG=/home/user/project/sbci_config
 
 # CHANGE LOCATION TO FREESURFER WITH PERSONAL LICENSE
 fsdir=/software/freesurfer/6.0.0/freesurfer/
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # CHANGE SBATCH OPTIONS FOR SET AND FSFAST
-options='-t 5-00:00:00 --mem-per-cpu=20gb'
+options='-t 5-00:00:00 --mem-per-cpu=256gb'
 
 # link the log file into the output folder (bash variables don't work in #SBATCH -o)
 # important to keep "#SBATCH -o preproc_scilpy_%j.log" in the options of this file

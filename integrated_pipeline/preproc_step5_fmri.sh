@@ -6,7 +6,7 @@ source ${SBCI_CONFIG}
 echo "Sourcing FREESURFER_HOME"
 FREESURFER_PATH=/software/freesurfer/6.0.0
 source ${FREESURFER_PATH}/SetUpFreeSurfer.sh
-
+cd /scratch/ywang330/output/subjects_dir/103818
 echo "Begin FSFast fMRI preprocessing: $(date)"
 export SUBJECTS_DIR=$(pwd)/dwi_pipeline/structure
 
@@ -100,7 +100,7 @@ mkanalysis-sess -analysis fc.mni \
     -force
 echo "done mkanalysis-sess"
 # regress out the nuisance variables for each run separately
-selxavg3-sess -analysis fc.surface.lh -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
+# selxavg3-sess -analysis fc.surface.lh -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
 selxavg3-sess -analysis fc.surface.rh -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
 selxavg3-sess -analysis fc.mni -s ${SUBJECT_ID} -no-con-ok -run-wise -svres -force
 

@@ -1,17 +1,20 @@
 #!/bin/bash
 #SBATCH -t 5-0:00:00 
 #SBATCH -o sbci_grid_%j.log
-#SBATCH --mem-per-cpu=15gb
+#SBATCH --mem-per-cpu=256gb
+#SBATCH --output /home/ywang330/SBCI_Pipeline/HCP_example/sbatch_message.txt
 
-out=${1}
-scripts=${2}
+out=/scratch/ywang330/sbci/subjects_dir
+scripts=/home/ywang330/SBCI_Pipeline/pipeline_scripts
 
 # CHANGE LOCATION TO YOUR SOURCE FILE
-echo "Sourcing .bashrc"
-source /home/user/bashrc
+# echo "Sourcing .bashrc"
+# source /home/user/bashrc
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/home/user/project/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/HCP_example/sbci_config
+
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # link the log file into the output folder (bash variables don't work in #SBATCH -o)
 # important to keep "#SBATCH -o sbci_grid_%j.log" in the options of this file

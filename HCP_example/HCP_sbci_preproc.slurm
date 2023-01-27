@@ -16,10 +16,10 @@ subdir=${out}/${subj}
 # source /home/user/bashrc
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/home/user/project/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/HCP_example/sbci_config
 
 # CHANGE LOCATION TO FREESURFER WITH PERSONAL LICENSE
-fsdir=/software/freesurfer/6.0.0/freesurfer/
+fsdir=/software/freesurfer/6.0.0
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
 # CHANGE SBATCH OPTIONS FOR SET AND FSFAST
@@ -27,7 +27,7 @@ options='-t 5-00:00:00 --mem-per-cpu=256gb'
 
 # link the log file into the output folder (bash variables don't work in #SBATCH -o)
 # important to keep "#SBATCH -o preproc_scilpy_%j.log" in the options of this file
-ln -f preproc_scilpy_${SLURM_JOB_ID}.log ${subdir}/preproc_scilpy_${1}.log
+ln -f preproc_scilpy_${SLURM_JOB_ID}.log ${subdir}/preproc_scilpy_${subj}.log
 
 ########################################
 
@@ -66,17 +66,26 @@ echo "Beginning diffusion processing of HCP subject ${subj}."
 date
 
 source $SBCI_CONFIG
+echo "start preproc step1"
 source ${scripts}/preproc_step1_preparedata.sh
+echo "done preproc step1"
+echo "start preproc step2"
 source ${scripts}/preproc_step2_t1_dwi_registration.sh
+echo "done preproc step2"
+echo "start preproc step3"
 source ${scripts}/preproc_step3_t1_freesurfer.sh
-
+echo "done preproc step3"
+echo "start preproc step4"
 # once Step3 is complete, the functional preprocessing can begin in parallel with diffusion
 sbatch -o ${subdir}/preproc_fsfast_${subj}.log ${options} \
 	${scripts}/preproc_step4_fmri.sh ${subdir} ${fsdir} ${scripts}/config_files
-
+echo "done preproc step4"
+echo "start preproc step5"
 source ${scripts}/preproc_step5_fodf_estimation.sh
+echo "done preproc step5"
+echo "start set step1"
 source ${scripts}/set_step1_preparedata.sh
-
+echo "done preproc step1"
 echo "Starting parallel tracking jobs for SET."
 
 # run SET tracking in parallel N_RUN times (sourced from SBCI_CONFIG)

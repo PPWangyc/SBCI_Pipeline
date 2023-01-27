@@ -1,0 +1,171 @@
+ln: failed to access ‘sbci_14447448.log’: No such file or directory
+Beginning preprocessing of subject 103818
+Fri Jan 27 02:33:31 EST 2023
+start sbci_step2_process_surfaces
+Saving ./dwi_sbci_connectome/SBCI/lh_sphere.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/rh_sphere.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/lh_white.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/rh_white.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/lh_inflated.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/rh_inflated.vtk as a surface
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+Saving ./dwi_sbci_connectome/SBCI/lh_sphere_reg.vtk as a surface
+Saving ./dwi_sbci_connectome/SBCI/rh_sphere_reg.vtk as a surface
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+INFO:root:Loading and normalising the .vtk surface.
+INFO:root:Loading and normalising the .vtk surface.
+INFO:root:Loading and resampling the .vtk surface.
+INFO:root:Loading and resampling the .vtk surface.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Merged 0 points during triangulation.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Merged 0 points during triangulation.
+INFO:root:Loading .vtk surfaces, mapping, and intersections.
+INFO:root:Snapping mesh to nearest downsampled vertices.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Loading surfaces.
+INFO:root:Calculating metrics.
+Hausdorff distance: 6.639920922767215
+Mean triangle area for meshA: 16.50428278967882
+SD triangle area for meshA: 16.18371959484636
+Mean triangle area for meshB: 0.3204149451009655
+SD triangle area for meshB: 0.17152842192573847
+INFO:root:Loading surfaces.
+INFO:root:Calculating metrics.
+Hausdorff distance: 3.3431452996318454
+Mean triangle area for meshA: 31.834074281844167
+SD triangle area for meshA: 35.91929080886861
+Mean triangle area for meshB: 0.572502323473105
+SD triangle area for meshB: 0.3573516202630069
+done sbci_step2_process_surfaces
+start sbci_step3_structural
+INFO:root:Loading .vtk surfaces, mapping, and intersections.
+INFO:root:Loading .vtk surfaces and intersections.
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+INFO:root:Mapping triangles to sruface.
+INFO:root:Snapping intersections to nearest vertices.
+INFO:root:Saving results.
+INFO:root:Loading .vtk surfaces, mapping, and intersections.
+INFO:root:Registering to nearest vertex.
+INFO:root:Loading mapping and intersections.
+INFO:root:Calculating SC for 361520 streamlines.
+INFO:root:Loading the .vtk surfaces and snapped intersections data.
+INFO:root:Converting snapped intersections to spherical coordinates (concon format).
+INFO:root:Processing intersections from: ./dwi_sbci_connectome/SBCI/snapped_fibers.npz
+INFO:root:Processing intersection: 0
+INFO:root:Processing intersection: 100000
+INFO:root:Processing intersection: 200000
+INFO:root:Processing intersection: 300000
+Warning: num_harmonics now global constant (for speed)
+/scratch/ywang330/sbci/subjects_dir/SBCI_AVG/lh_grid_avg_0.99.m
+printing to ./dwi_sbci_connectome/SBCI/subject_avg_0.005_0.99.raw
+finished printing to ./dwi_sbci_connectome/SBCI/subject_avg_0.005_0.99.raw
+INFO:root:Loading 3661x3661 kernel matrix.
+INFO:root:Converting to MATLAB matrix.
+INFO:root:Loading mapping and intersections.
+INFO:root:Calculating SC for subcortical-subcortical streamlines.
+INFO:root:ROIs: [ 2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+INFO:root:Calculating SC for subcortical-cortical streamlines.
+INFO:root:Smoothing 66166 streamlines.
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+done sbci_step3_structural
+start sbci_step4_functional
+INFO:root:Calculating timeseries for left hemisphere
+INFO:root:Calculating timeseries for right hemisphere
+INFO:root:Calculating timeseries for subcortical regions
+INFO:root:Loading timeseries data.
+INFO:root:TS length:(327684, 1200)
+INFO:root:Calculating mean signal for 3661 vertices.
+INFO:root:Calculating FC.
+/home/ywang330/SBCI_Pipeline/scripts/calculate_fc.py:44: RuntimeWarning: invalid value encountered in divide
+  return np.dot(X_mX, Y_mY.T) / np.sqrt(np.dot(ssX, ssY))
+INFO:root:Calculating FC for subcortical regions.
+INFO:root:Calculating timeseries for left hemisphere
+INFO:root:Calculating timeseries for right hemisphere
+INFO:root:Calculating timeseries for subcortical regions
+INFO:root:Loading timeseries data.
+INFO:root:TS length:(327684, 1200)
+INFO:root:Calculating mean signal for 3661 vertices.
+INFO:root:Calculating FC.
+/home/ywang330/SBCI_Pipeline/scripts/calculate_fc.py:44: RuntimeWarning: invalid value encountered in divide
+  return np.dot(X_mX, Y_mY.T) / np.sqrt(np.dot(ssX, ssY))
+INFO:root:Calculating FC for subcortical regions.
+INFO:root:Calculating timeseries for left hemisphere
+INFO:root:Calculating timeseries for right hemisphere
+INFO:root:Calculating timeseries for subcortical regions
+INFO:root:Loading timeseries data.
+INFO:root:TS length:(327684, 1200)
+INFO:root:Calculating mean signal for 3661 vertices.
+INFO:root:Calculating FC.
+/home/ywang330/SBCI_Pipeline/scripts/calculate_fc.py:44: RuntimeWarning: invalid value encountered in divide
+  return np.dot(X_mX, Y_mY.T) / np.sqrt(np.dot(ssX, ssY))
+INFO:root:Calculating FC for subcortical regions.
+INFO:root:Calculating timeseries for left hemisphere
+INFO:root:Calculating timeseries for right hemisphere
+INFO:root:Calculating timeseries for subcortical regions
+INFO:root:Loading timeseries data.
+INFO:root:TS length:(327684, 1200)
+INFO:root:Calculating mean signal for 3661 vertices.
+INFO:root:Calculating FC.
+/home/ywang330/SBCI_Pipeline/scripts/calculate_fc.py:44: RuntimeWarning: invalid value encountered in divide
+  return np.dot(X_mX, Y_mY.T) / np.sqrt(np.dot(ssX, ssY))
+INFO:root:Calculating FC for subcortical regions.
+done sbci_step4_functional
+start sbci_step5_atlas_connectivity
+Calculating Atlas: aparc.a2009s
+INFO:root:Loading mapping and intersections.
+INFO:root:Calculating SC for 148 rois.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 148 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 148 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 148 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 148 rois.
+INFO:root:Calculating FC.
+Calculating Atlas: aparc
+INFO:root:Loading mapping and intersections.
+INFO:root:Calculating SC for 68 rois.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 68 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 68 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 68 rois.
+INFO:root:Calculating FC.
+INFO:root:Loading timeseries data.
+INFO:root:Mean TS length:3661
+INFO:root:Calculating signal for 68 rois.
+INFO:root:Calculating FC.
+/home/ywang330/SBCI_Pipeline/HCP_example
+Fri Jan 27 04:07:21 EST 2023
+Done processing of subject 103818
+rm: cannot remove ‘sbci_14447448.log’: No such file or directory

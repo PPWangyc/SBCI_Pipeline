@@ -3,7 +3,7 @@
 SUBJECT_DIR=${1}
 FS_HOME=${2}
 CONFIG_DIR=${3}
-
+FS_HOME=/software/freesurfer/6.0.0
 export FREESURFER_HOME=${FS_HOME}
 export SUBJECTS_DIR=${SUBJECT_DIR}/dwi_sbci_connectome/structure
 

@@ -1,0 +1,152 @@
+ln: failed to access ‘sbci_grid_14447116.log’: No such file or directory
+Beginning preprocessing template space grid
+Fri Jan 27 01:56:33 EST 2023
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/lh_white_avg.vtk as a surface
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/rh_white_avg.vtk as a surface
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/lh_sphere_avg.vtk as a surface
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/rh_sphere_avg.vtk as a surface
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/lh_inflated_avg.vtk as a surface
+Saving /scratch/ywang330/sbci/subjects_dir/SBCI_AVG/rh_inflated_avg.vtk as a surface
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+/home/ywang330/.conda/envs/sbci/lib/python2.7/site-packages/vtk/util/numpy_support.py:137: FutureWarning: Conversion of the second argument of issubdtype from `complex` to `np.complexfloating` is deprecated. In future, it will be treated as `np.complex128 == np.dtype(complex).type`.
+  assert not numpy.issubdtype(z.dtype, complex), \
+INFO:root:Loading and resampling the .vtk surface.
+INFO:root:Loading and resampling the .vtk surface.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Merged 0 points during triangulation.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Merged 1 points during triangulation.
+INFO:root:Loading .vtk surfaces, mapping, and intersections.
+INFO:root:Snapping mesh to nearest downsampled vertices.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Loading and resampling .vtk surface.
+INFO:root:Loading and converting the .vtk surface.
+INFO:root:Loading and converting the .vtk surface.
+INFO:root:Loading and normalising the .m surface.
+INFO:root:Loading and normalising the .m surface.
+INFO:root:Loading and normalising the .vtk surface.
+INFO:root:Loading and normalising the .vtk surface.
+INFO:root:Loading and normalising the .vtk surface.
+INFO:root:Loading and normalising the .vtk surface.
+Processing Parcellation: aparc.a2005s
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 77
+INFO:root:Number of RH ROIs: 77
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 156
+INFO:root:Number of LH vertices: 78
+INFO:root:Number of RH vertices: 78
+INFO:root:Number of LH ROIs: 78
+INFO:root:Number of RH ROIs: 78
+Processing Parcellation: aparc.a2009s
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 75
+INFO:root:Number of RH ROIs: 75
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 150
+INFO:root:Number of LH vertices: 75
+INFO:root:Number of RH vertices: 75
+INFO:root:Number of LH ROIs: 75
+INFO:root:Number of RH ROIs: 75
+Processing Parcellation: aparc
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 35
+INFO:root:Number of RH ROIs: 35
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 71
+INFO:root:Number of LH vertices: 36
+INFO:root:Number of RH vertices: 35
+INFO:root:Number of LH ROIs: 36
+INFO:root:Number of RH ROIs: 35
+Processing Parcellation: oasis.chubs
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 9
+INFO:root:Number of RH ROIs: 9
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 18
+INFO:root:Number of LH vertices: 9
+INFO:root:Number of RH vertices: 9
+INFO:root:Number of LH ROIs: 9
+INFO:root:Number of RH ROIs: 9
+Processing Parcellation: PALS_B12_Brodmann
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 42
+INFO:root:Number of RH ROIs: 41
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 85
+INFO:root:Number of LH vertices: 43
+INFO:root:Number of RH vertices: 42
+INFO:root:Number of LH ROIs: 43
+INFO:root:Number of RH ROIs: 42
+Processing Parcellation: PALS_B12_Lobes
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 6
+INFO:root:Number of RH ROIs: 6
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 14
+INFO:root:Number of LH vertices: 7
+INFO:root:Number of RH vertices: 7
+INFO:root:Number of LH ROIs: 7
+INFO:root:Number of RH ROIs: 7
+Processing Parcellation: PALS_B12_OrbitoFrontal
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 21
+INFO:root:Number of RH ROIs: 24
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 50
+INFO:root:Number of LH vertices: 25
+INFO:root:Number of RH vertices: 25
+INFO:root:Number of LH ROIs: 25
+INFO:root:Number of RH ROIs: 25
+Processing Parcellation: PALS_B12_Visuotopic
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 13
+INFO:root:Number of RH ROIs: 13
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 26
+INFO:root:Number of LH vertices: 13
+INFO:root:Number of RH vertices: 13
+INFO:root:Number of LH ROIs: 13
+INFO:root:Number of RH ROIs: 13
+Processing Parcellation: Yeo2011_17Networks_N1000
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 18
+INFO:root:Number of RH ROIs: 18
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 36
+INFO:root:Number of LH vertices: 18
+INFO:root:Number of RH vertices: 18
+INFO:root:Number of LH ROIs: 18
+INFO:root:Number of RH ROIs: 18
+Processing Parcellation: Yeo2011_7Networks_N1000
+INFO:root:Number of LH vertices: 1834
+INFO:root:Number of RH vertices: 1827
+INFO:root:Number of LH ROIs: 8
+INFO:root:Number of RH ROIs: 8
+INFO:root:Merging vertices into parcellation
+INFO:root:Number of ROIs: 16
+INFO:root:Number of LH vertices: 8
+INFO:root:Number of RH vertices: 8
+INFO:root:Number of LH ROIs: 8
+INFO:root:Number of RH ROIs: 8
+Fri Jan 27 01:59:06 EST 2023
+Done processing of template space grid
+rm: cannot remove ‘sbci_grid_14447116.log’: No such file or directory

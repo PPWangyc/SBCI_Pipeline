@@ -1,11 +1,13 @@
 #!/bin/bash
 
-IN=${1}
-OUT=${2}
-SCRIPTS=${3}
+# IN=CogTE1001
+# OUT=/scratch/tbaran2_lab/CogTE
+IN=subjects.txt
+OUT=/scratch/tbaran2_lab/CogTE/minimal_processed
+SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/PATH/TO/YOUR/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""

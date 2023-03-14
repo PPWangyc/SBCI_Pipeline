@@ -64,7 +64,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     cp ${diffdata}/data.nii.gz ${subdir}/dwi/${subj}_dwi.nii.gz
 
     # copy RAW fMRI data to output folder
-    cp ${funcdata}/rsfmri_st_mc.nii.gz ${subdir}/fsfast/t1_freesurfer/bold/001/f.nii.gz
+    cp ${funcdata}/rsfmri_st_mc.nii.gz ${subdir}/fsfast/bold/001/f.nii.gz
     
     cd ${subdir}
     mkdir -p dwi_pipeline

@@ -53,7 +53,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     mkdir -p ${subdir}/anat
     mkdir -p ${subdir}/dwi
 
-    mkdir -p ${subdir}/fsfast/t1_freesurfer/bold/001
+    mkdir -p ${subdir}/fsfast/bold/001
 
     # copy T1w data to output folder
     cp ${diffdata}/T1.nii.gz ${subdir}/anat/${subj}_T1w.nii.gz

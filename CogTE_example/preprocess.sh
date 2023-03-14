@@ -14,6 +14,7 @@ OPTIONS=""
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # helper function to return job id
 function sb() {
@@ -73,30 +74,29 @@ for i in $(seq 1 ${#subjects[@]}); do
         --output=preproc_step1_preparedata.log \
         ${SCRIPTS}/preproc_step1_preparedata.sh)
 
-    # cd dwi_pipeline
+    cd dwi_pipeline
 
-    # STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
-    #     --export=ALL,SBCI_CONFIG \
-    #     --output=preproc_step2_t1_dwi_registration.log \
-    #     --dependency=afterok:${STEP1} ${SCRIPTS}/preproc_step2_t1_dwi_registration.sh)
+    STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
+        --export=ALL,SBCI_CONFIG \
+        --output=preproc_step2_t1_dwi_registration.log \
+        --dependency=afterok:${STEP1} ${SCRIPTS}/preproc_step2_t1_dwi_registration.sh)
 
-    # STEP3=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step3 \
-    #     --export=ALL,SBCI_CONFIG \
-    #     --output=preproc_step3_t1_freesurfer.log \
-    #     --dependency=afterok:${STEP2} ${SCRIPTS}/preproc_step3_t1_freesurfer.sh)
+    STEP3=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step3 \
+        --export=ALL,SBCI_CONFIG \
+        --output=preproc_step3_t1_freesurfer.log \
+        --dependency=afterok:${STEP2} ${SCRIPTS}/preproc_step3_t1_freesurfer.sh)
 
-    # STEP4=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step4 \
-    #     --export=ALL,SBCI_CONFIG \
-    #     --output=preproc_step4_fodf_estimation.log \
-    #     --dependency=afterok:${STEP3} ${SCRIPTS}/preproc_step4_fodf_estimation.sh)
+    STEP4=$(sb $OPTIONS --time=4-0:00:00 --mem=20g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step4 \
+        --export=ALL,SBCI_CONFIG \
+        --output=preproc_step4_fodf_estimation.log \
+        --dependency=afterok:${STEP3} ${SCRIPTS}/preproc_step4_fodf_estimation.sh)
 
-    # cd ..
+    cd ..
 
-    # STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=10g --job-name=$JID.${subjects[$idx]}.preproc.step5 \
-    #     --export=ALL,SBCI_CONFIG \
-    #     --output=preproc_step5_fmri.log \
-    #     ${SCRIPTS}/preproc_step5_fmri.sh \
-    #     --dependency=afterok:${STEP4} ${SCRIPTS}/preproc_step5_fmri.sh)
+    STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=10g --job-name=$JID.${subjects[$idx]}.preproc.step5 \
+        --export=ALL,SBCI_CONFIG \
+        --output=preproc_step5_fmri.log \
+        --dependency=afterok:${STEP4} ${SCRIPTS}/preproc_step5_fmri.sh)
 
     cd ${rootdir}
 done

@@ -11,13 +11,16 @@ source /home/mcole22/.bashrc-set
 module load mrtrix3/b3
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/scratch/dmi/zzhang87_lab/mcole22/SMS/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS="-p dmi --qos abcd"
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
+
+
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # helper function to return job id
 function sb() {

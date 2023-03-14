@@ -5,13 +5,14 @@ OUT=${2}
 SCRIPTS=${3}
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/PATH/TO/YOUR/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # helper function to return job id
 function sb() {

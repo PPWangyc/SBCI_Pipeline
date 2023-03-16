@@ -1,12 +1,10 @@
 #!/bin/bash
 
-IN=${1}
-OUT=${2}
-SCRIPTS=${3}
+IN=subjects.txt
+OUT=/scratch/ywang330/SBCI_AVG
+SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO YOUR SOURCE FILE
-echo "Sourcing .bashrc"
-source /home/mcole22/.bashrc-set
 
 module load mrtrix3/b3
 
@@ -14,7 +12,7 @@ module load mrtrix3/b3
 export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
-OPTIONS="-p dmi --qos abcd"
+OPTIONS=""
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
@@ -79,7 +77,8 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     STEP1=$(sb $OPTIONS --time=48:00:00 --mem=15g --job-name=$JID.step1 \
         --export=ALL,SBCI_CONFIG \
-        --output=psc_step1_tractography.log ${SCRIPTS}/psc_step1_tractography.sh)
+        --output=psc_step1_tractography.log\
+        ${SCRIPTS}/psc_step1_tractography.sh)
 
     cd ${rootdir}
 done

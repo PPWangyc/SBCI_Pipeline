@@ -1,8 +1,8 @@
 #!/bin/bash
 
-IN=${1}
-OUT=${2}
-SCRIPTS=${3}
+IN=subjects.txt
+OUT=/scratch/ywang330/SBCI_AVG
+SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
 export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
@@ -37,10 +37,10 @@ fi
 
 echo "Processing ${#subjects[@]} subject(s)"
 
-echo "Beginning processing of SBCI grid: $(date)"
-STEP1=$(sb ${OPTIONS} --time=4:00:00 --mem=4g --job-name=$JID.step1 \
-    --export=ALL,SBCI_CONFIG \
-    --output=sbci_step1_process_grid.log ${SCRIPTS}/sbci_step1_process_grid.sh)
+# echo "Beginning processing of SBCI grid: $(date)"
+# STEP1=$(sb ${OPTIONS} --time=4:00:00 --mem=4g --job-name=$JID.step1 \
+#     --export=ALL,SBCI_CONFIG \
+#     --output=sbci_step1_process_grid.log ${SCRIPTS}/sbci_step1_process_grid.sh)
 
 sleep 0.01
 

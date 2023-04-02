@@ -60,8 +60,8 @@ for i in $(seq 1 ${#subjects[@]}); do
     cp ${anatdata}/T1w.nii.gz ${subdir}/anat/${subj}_T1w.nii.gz
 
     # copy eddy-corrected DWI data to output folder
-    cp ${dwidata}/dwi.bval ${subdir}/dwi/${subj}_dwi.bval
-    cp ${dwidata}/dwi.bvec ${subdir}/dwi/${subj}_dwi.bvec
+    cp ${dwidata}/dwi.bval ${subdir}/dwi/${subj}_dwi.bvec
+    cp ${dwidata}/dwi.bvec ${subdir}/dwi/${subj}_dwi.bval
     cp ${dwidata}/dwi.nii.gz ${subdir}/dwi/${subj}_dwi.nii.gz
 
     # copy RAW fMRI data to output folder

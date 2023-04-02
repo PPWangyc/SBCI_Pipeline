@@ -53,12 +53,12 @@ python ${SCRIPT_PATH}/get_coords.py --lh_surface ${OUTPUTDIR}/lh_sphere_reg_lps_
 python ${SCRIPT_PATH}/sample_surface.py \
        --surface ${OUTPUTDIR}/lh_white_lps.vtk \
        --output ${OUTPUTDIR}/lh_white_ids_${RESOLUTION}.npz \
-       --reduction ${RESOLUTION} -f
+       --reduction 0.99 -f
 
 python ${SCRIPT_PATH}/sample_surface.py \
        --surface ${OUTPUTDIR}/rh_white_lps.vtk \
        --output ${OUTPUTDIR}/rh_white_ids_${RESOLUTION}.npz \
-       --reduction ${RESOLUTION} -f
+       --reduction 0.99 -f
 
 # Step2) Downsample the white sphere mesh to the required resolution
 python ${SCRIPT_PATH}/generate_sphere.py \

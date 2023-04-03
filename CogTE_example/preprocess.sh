@@ -1,8 +1,10 @@
 #!/bin/bash
+#SBATCH -t 0-1:00:00 
+#SBATCH --mem-per-cpu=10gb
 
 # IN=CogTE1001
 # OUT=/scratch/tbaran2_lab/CogTE
-IN=subjects.txt
+IN=T2.txt
 DATA=/scratch/tbaran2_lab/CogTE/minimal_processed/T2
 SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 

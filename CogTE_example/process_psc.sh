@@ -1,7 +1,9 @@
 #!/bin/bash
+#SBATCH -t 0-1:00:00 
+#SBATCH --mem-per-cpu=10gb
 
-IN=subjects.txt
-OUT=/scratch/ywang330/SBCI_AVG
+IN=T2.txt
+OUT=/scratch/tbaran2_lab/CogTE/SBCI_AVG
 SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO YOUR SOURCE FILE

@@ -1,17 +1,22 @@
 #!/bin/bash
+#SBATCH -t 0-1:00:00 
+#SBATCH --mem-per-cpu=10gb
 
-IN=${1}
-OUT=${2}
-SCRIPTS=${3}
+# IN=CogTE1001
+# OUT=/scratch/tbaran2_lab/CogTE
+IN=T2.txt
+DATA=/scratch/tbaran2_lab/CogTE/minimal_processed/T2
+SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/PATH/TO/YOUR/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # helper function to return job id
 function sb() {
@@ -40,10 +45,31 @@ rootdir=$(pwd)
 
 for i in $(seq 1 ${#subjects[@]}); do
     idx=$((i - 1))
-    cd ${OUT}/${subjects[$idx]}
-
+    subj=${subjects[$idx]}
     echo "Placing subject ${subjects[$idx]} in queue"
+    anatdata=${DATA}/${subj}/anat
+    dwidata=${DATA}/${subj}/dwi
+    funcdata=${DATA}/${subj}/func
 
+    subdir=${OUTPUT_PATH}/${subj}
+    echo "subdir:" ${subdir} 
+    mkdir -p ${subdir}/anat
+    mkdir -p ${subdir}/dwi
+
+    mkdir -p ${subdir}/fsfast/bold/001
+
+    # copy T1w data to output folder
+    cp ${anatdata}/T1w.nii.gz ${subdir}/anat/${subj}_T1w.nii.gz
+
+    # copy eddy-corrected DWI data to output folder
+    cp ${dwidata}/dwi.bval ${subdir}/dwi/${subj}_dwi.bvec
+    cp ${dwidata}/dwi.bvec ${subdir}/dwi/${subj}_dwi.bval
+    cp ${dwidata}/dwi.nii.gz ${subdir}/dwi/${subj}_dwi.nii.gz
+
+    # copy RAW fMRI data to output folder
+    cp ${funcdata}/task-rest.nii.gz ${subdir}/fsfast/bold/001/f.nii.gz
+    
+    cd ${subdir}
     mkdir -p dwi_pipeline
 
     STEP1=$(sb $OPTIONS --time=1:00:00 --mem=10g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step1 \
@@ -73,7 +99,6 @@ for i in $(seq 1 ${#subjects[@]}); do
     STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=10g --job-name=$JID.${subjects[$idx]}.preproc.step5 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step5_fmri.log \
-        ${SCRIPTS}/preproc_step5_fmri.sh \
         --dependency=afterok:${STEP4} ${SCRIPTS}/preproc_step5_fmri.sh)
 
     cd ${rootdir}

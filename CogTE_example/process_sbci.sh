@@ -1,17 +1,20 @@
 #!/bin/bash
+#SBATCH -t 0-1:00:00 
+#SBATCH --mem-per-cpu=10gb
 
-IN=${1}
-OUT=${2}
-SCRIPTS=${3}
+IN=T2.txt
+OUT=/scratch/tbaran2_lab/CogTE/SBCI_AVG
+SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/PATH/TO/YOUR/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""
 
 echo "Sourcing SBCI config file"
 source $SBCI_CONFIG
+. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # helper function to return job id
 function sb() {
@@ -78,7 +81,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     STEP6=$(sb ${OPTIONS} --time=10:00:00 --mem=20g --job-name=$JID.step6.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step6_functional.log \
-        --dependency=afterok:${STEP1} ${SCRIPTS}/sbci_step6_functional.sh)
+        --dependency=afterok:${STEP5} ${SCRIPTS}/sbci_step6_functional.sh)
 
     cd ${ROOT}
 done

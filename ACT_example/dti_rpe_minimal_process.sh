@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -t 0-3:00:00 
+#SBATCH -t 3-3:00:00 
 #SBATCH --mem-per-cpu=100gb
 
 # Written by Andrew Jahn, University of Michigan, 02.25.2019

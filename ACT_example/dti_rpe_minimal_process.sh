@@ -37,6 +37,12 @@ cd $BIDS_PATH
 # Create QC folder and assign the path to a variable named 'QC_DIR'
 QC_DIR=${BIDS_PATH}/QC/
 
+export QT_QPA_PLATFORM=offscreen
+export XDG_RUNTIME_DIR=${BIDS_PATH}/run
+export RUNLEVEL=3
+
+export TMP_DIR=${BIDS_PATH}/tmp
+
 # Create the following folders in the QC dir to save QC images 
 # /residual 
 # /corrupt
@@ -63,14 +69,15 @@ mrcalc raw_dwi.mif dwi_den.mif  -subtract noise_residual.mif
 # ---------------------- QC steps  ---------------------- #
 # Everything within the grey and white matter should be relatively uniform and blurry. If any clear anatomical landmarks are visible in the residual image, those parts of the brain have been corrupted by noise - increase the extent of the denoising filter from 5 (default) to a larger number, e.g. 7.
 # mkdir $QC_DIR/residual 
-mrview noise_residual.mif -capture.folder $QC_DIR/residual -capture.prefix $SBJ -capture.grab
+# mrview noise_residual.mif -capture.folder $QC_DIR/residual -capture.prefix $SBJ -capture.grab
 
 # dwidenoise raw_dwi.mif dwi_den.mif  -extent 7 -noise noise_7extent.nii.gz
 
 # Determine whether Gibbs denoising is needed. Check diffusion data for ringing artifacts before and after to determine whether Gibbs denoising improved the data. If the data looks worse or the same, then skip Gibbs denoising.
-mrdegibbs raw_dwi.mif dwi_den.mif
+# mrdegibbs raw_dwi.mif dwi_den.mif
+mrdegibbs raw_dwi.mif dwi_den.mif -force
 
-mrview raw_dwi.mif dwi_den.mif -capture.folder $QC_DIR/gibbs -capture.prefix $SBJ -capture.grab
+# mrview raw_dwi.mif dwi_den.mif -capture.folder $QC_DIR/gibbs -capture.prefix $SBJ -capture.grab
 
 ##### Check for gibbs ringing before continuing to process
 
@@ -112,20 +119,21 @@ dwi2mask dwi_den_preproc_unbiased.mif mask.mif
 
 # -------------- Type of shell-acquisition  -------------- #
 ### SINGLE-SHELL (single b-value) 
-dwi2response tournier dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt -voxels voxels.mif
+# dwi2response tournier dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt -voxels voxels.mif
 
 # move files into QC folder 
-mv response_wm.txt response_gm.txt response_csf.txt $QC_DIR/response/$SBJ
+# mv response_wm.txt response_gm.txt response_csf.txt $QC_DIR/response/$SBJ
 
 # Estimate fibre orientation distributions (FOD) from diffusion data using spherical deconvolution, using the basis functions estimated above
-dwi2fod csd dwi.mif response_wm.txt wmfod.mif
+# dwi2fod csd dwi.mif response_wm.txt wmfod.mif
+# dwi2fod csd dwi_den_preproc_unbiased.mif response_wm.txt wmfod.mif
 # -------------------------------------------------------- #
 
 ### MULTI-SHELL (more than 1 b-value)
-# dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt-voxels voxels.mif
+dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt-voxels voxels.mif
 
 # Estimate fibre orientation distributions from diffusion data using spherical deconvolution, using the basis functions estimated above
-# dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif
+dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif
 # -------------------------------------------------------- #
 
 # Create an image of the FODs overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
@@ -174,7 +182,7 @@ mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix.txt -inverse 5tt_coreg.mi
 
 # --------------------------- QC for Step 1 --------------------------
 # View original diffusion data overlaid on top of the eddy-corrected data and colored in red
-mrview dwi_den_preproc.mif -overlay.load raw_dwi.mif
+# mrview dwi_den_preproc.mif -overlay.load raw_dwi.mif
 
 ### Corrupt slices 
 # dwi_post_eddy.eddy_outlier_map indicates whether a slice is an outlier (1) or not (0), because of too much motion, eddy currents, or something else.
@@ -194,22 +202,22 @@ cd ..
 
 # --------------------------- QC for Step 2 --------------------------
 ### Brain mask 
-mrview mask.mif -capture.folder $QC_DIR/mask -capture.prefix $SBJ -capture.grab
+# mrview mask.mif -capture.folder $QC_DIR/mask -capture.prefix $SBJ -capture.grab
 
 ### Basis function
 # View the response functions for each tissue type (response_*.txt files in the QC folder). The WM function should flatten out at higher b-values, while the other tissues should remain spherical
 
 ### FOD estimation 
 # View the voxels used for FOD estimation (Blue=WM; Green=GM; Red=CSF)"
-mrview dwi_den_preproc_unbiased.mif -overlay.load voxels.mif -capture.folder $QC_DIR/fod_voxels -capture.prefix $SBJ -capture.grab
+# mrview dwi_den_preproc_unbiased.mif -overlay.load voxels.mif -capture.folder $QC_DIR/fod_voxels -capture.prefix $SBJ -capture.grab
 
 # Views the FODs overlaid on the tissue types (Blue=WM; Green=GM; Red=CSF)
-mrview vf.mif -odf.load_sh wmfod.mif -capture.folder $QC_DIR/fod_overlay -capture.prefix $SBJ -capture.grab
+# mrview vf.mif -odf.load_sh wmfod.mif -capture.folder $QC_DIR/fod_overlay -capture.prefix $SBJ -capture.grab
 
 
 # --------------------------- QC for Step 3 --------------------------
 # Check alignment of the 5 tissue types before and after alignment (new alignment in red, old alignment in blue)
-mrview dwi_den_preproc_unbiased.mif -overlay.load 5tt_nocoreg.mif -overlay.colourmap 2 -overlay.load 5tt_coreg.mif -overlay.colourmap 1 -capture.folder $QC_DIR/tissue_align -capture.prefix $SBJ -capture.grab
+# mrview dwi_den_preproc_unbiased.mif -overlay.load 5tt_nocoreg.mif -overlay.colourmap 2 -overlay.load 5tt_coreg.mif -overlay.colourmap 1 -capture.folder $QC_DIR/tissue_align -capture.prefix $SBJ -capture.grab
 
 # Check the seed region (should match up along the GM/WM boundary)
-mrview dwi_den_preproc_unbiased.mif -overlay.load gmwmSeed_coreg.mif -capture.folder $QC_DIR/gm_wm -capture.prefix $SBJ -capture.grab
+# mrview dwi_den_preproc_unbiased.mif -overlay.load gmwmSeed_coreg.mif -capture.folder $QC_DIR/gm_wm -capture.prefix $SBJ -capture.grab

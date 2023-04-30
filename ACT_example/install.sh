@@ -1,5 +1,6 @@
 #!/bin/bash
 # .bashrc
+
 module load qt 
 module load gcc/9.1.0 
 module load mrtrix3 

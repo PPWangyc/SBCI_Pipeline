@@ -41,7 +41,10 @@ export QT_QPA_PLATFORM=offscreen
 export XDG_RUNTIME_DIR=${BIDS_PATH}/run
 export RUNLEVEL=3
 
-export TMP_DIR=${BIDS_PATH}/tmp
+export FSLDIR=/home/yanchen/fsl/
+. ${FSLDIR}/etc/fslconf/fsl.sh
+
+# export TMP_DIR=${BIDS_PATH}/tmp
 
 # Create the following folders in the QC dir to save QC images 
 # /residual 
@@ -130,10 +133,10 @@ dwi2mask dwi_den_preproc_unbiased.mif mask.mif
 # -------------------------------------------------------- #
 
 ### MULTI-SHELL (more than 1 b-value)
-dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt-voxels voxels.mif
+dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt -voxels voxels.mif
 
 # Estimate fibre orientation distributions from diffusion data using spherical deconvolution, using the basis functions estimated above
-dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif
+dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif response_wm.txt wmfod.mif response_gm.txt gmfod.mif response_csf.txt csffod.mif
 # -------------------------------------------------------- #
 
 # Create an image of the FODs overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)

@@ -24,4 +24,4 @@ AP_BVAL=${OUTPUT_BIDS_PATH}/sub-${screen_id}/ses-${session}/dwi/sub-${screen_id}
 PA_BVEC=0
 PA_BVAL=0
 ANAT=${OUTPUT_BIDS_PATH}/sub-${screen_id}/ses-${session}/anat/sub-${screen_id}_ses-${session}_T1w.nii.gz
-sh dti_rpe_minimal_process.sh ${RAW_DWI} ${REV_PHASE} ${AP_BVEC} ${AP_BVAL} ${PA_BVEC} ${PA_BVAL} ${ANAT} ${OUTPUT_BIDS_PATH}/sub-${screen_id}/ses-${session}
+sh dti_rpe_minimal_process.sh ${RAW_DWI} ${REV_PHASE} ${AP_BVEC} ${AP_BVAL} ${PA_BVEC} ${PA_BVAL} ${ANAT} ${OUTPUT_BIDS_PATH}/sub-${screen_id}/ses-${session} > output.txt 2>&1

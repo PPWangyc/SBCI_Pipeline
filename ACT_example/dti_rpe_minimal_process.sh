@@ -120,28 +120,29 @@ dwi2mask dwi_den_preproc_unbiased.mif mask.mif
 # -------------- Type of shell-acquisition  -------------- #
 ### SINGLE-SHELL (single b-value) 
 # dwi2response tournier dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt -voxels voxels.mif
+dwi2response tournier dwi_den_preproc_unbiased.mif response_wm.txt -voxels voxels.mif
 
 # move files into QC folder 
 # mv response_wm.txt response_gm.txt response_csf.txt $QC_DIR/response/$SBJ
 
 # Estimate fibre orientation distributions (FOD) from diffusion data using spherical deconvolution, using the basis functions estimated above
 # dwi2fod csd dwi.mif response_wm.txt wmfod.mif
-# dwi2fod csd dwi_den_preproc_unbiased.mif response_wm.txt wmfod.mif
+dwi2fod csd dwi_den_preproc_unbiased.mif response_wm.txt wmfod.mif
 # -------------------------------------------------------- #
 
 ### MULTI-SHELL (more than 1 b-value)
-dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt-voxels voxels.mif
+# dwi2response dhollander dwi_den_preproc_unbiased.mif response_wm.txt response_gm.txt response_csf.txt-voxels voxels.mif
 
 # Estimate fibre orientation distributions from diffusion data using spherical deconvolution, using the basis functions estimated above
-dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif response_wm.txt wmfod.mif response_gm.txt gmfod.mif response_csf.txt csffod.mif
+# dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif response_wm.txt wmfod.mif response_gm.txt gmfod.mif response_csf.txt csffod.mif
 # -------------------------------------------------------- #
 
 # Create an image of the FODs overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
-mrconvert -coord 3 0 wmfod.mif - | mrcat csffod.mif gmfod.mif - vf.mif
+# mrconvert -coord 3 0 wmfod.mif - | mrcat csffod.mif gmfod.mif - vf.mif
 
 # Normalize the FODs to enable comparison between subjects
-mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif -mask mask.mif
-
+# mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif -mask mask.mif
+mtnormalise wmfod.mif wmfod_norm.mif -mask mask.mif
 
 ########################### STEP 3 ###################################
 #            Create a GM/WM boundary for seed analysis               #

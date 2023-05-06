@@ -81,7 +81,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     STEP6=$(sb ${OPTIONS} --time=10:00:00 --mem=20g --job-name=$JID.step6.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step6_functional.log \
-        --dependency=afterok:${STEP5} ${SCRIPTS}/sbci_step6_functional.sh)
+        --dependency=afterok:${STEP1} ${SCRIPTS}/sbci_step6_functional.sh)
 
     cd ${ROOT}
 done

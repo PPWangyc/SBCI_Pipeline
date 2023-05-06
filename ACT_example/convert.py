@@ -8,7 +8,7 @@ CONFIG_PATH = os.path.join(ACT_PATH,'bids', 'config.json')
 OUTPUT_BIDS_PATH = os.path.join('/scratch/ywang330/ACT')
 session='01'
 dicom_dirs = get_folder_list(os.path.join(ACT_PATH, 'dicom'))
-# dicom_dirs = ['/scratch/tbaran2_lab/ACT/dicom/001_S_0105']
+dicom_dirs = ['/scratch/tbaran2_lab/ACT/dicom/001_S_0105']
 print(len(dicom_dirs))
 for dicom_dir in dicom_dirs:
     screen_id = dicom_dir.split('_')[-1]

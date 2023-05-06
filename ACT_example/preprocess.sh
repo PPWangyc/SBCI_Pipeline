@@ -4,12 +4,12 @@
 
 # IN=CogTE1001
 # OUT=/scratch/tbaran2_lab/CogTE
-IN=T2.txt
-DATA=/scratch/tbaran2_lab/CogTE/minimal_processed/T2
-SCRIPTS=/home/ywang330/SBCI_Pipeline/CogTE_example
+IN=ACT.txt
+DATA=/scratch/ywang330/ACT
+SCRIPTS=/home/ywang330/SBCI_Pipeline/ACT_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/CogTE_example/sbci_config
+export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/ACT_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""

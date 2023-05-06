@@ -5,12 +5,12 @@
 ###########################################################################################
 # Change this to an identifier of the dataset being processed (for our reference)
 ###########################################################################################
-DATASET_NAME=CogTE
+DATASET_NAME=ACT
 
 ###########################################################################################
 # Change these to the b-values available in the data for DTI and FODF estimation
 # ------------------------------------------------------------------------------
-# The CogTE data have values of around 0, 1000, and 2000
+# The ACT data have values of around 0, 1000, and 2000
 ###########################################################################################
 
 DTI_BVALS=(0 1000)
@@ -23,7 +23,7 @@ FODF_BVALS=(0 1000 2000)
 PSC_PATH=/home/ywang330/PSC_Pipeline/
 SBCI_PATH=/home/ywang330/SBCI_Pipeline/
 FREESURFER_PATH=/software/freesurfer/6.0.0/
-OUTPUT_PATH=/scratch/tbaran2_lab/CogTE/SBCI_AVG
+OUTPUT_PATH=/scratch/ywang330/ACT/SBCI_AVG
 
 ###########################################################################################
 # SC options: N_RUN number of times to run SET in parallel (SET)

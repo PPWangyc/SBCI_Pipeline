@@ -47,9 +47,9 @@ for i in $(seq 1 ${#subjects[@]}); do
     idx=$((i - 1))
     subj=${subjects[$idx]}
     echo "Placing subject ${subjects[$idx]} in queue"
-    anatdata=${DATA}/${subj}/anat
-    dwidata=${DATA}/${subj}/dwi
-    funcdata=${DATA}/${subj}/func
+    anatdata=${DATA}/${subj}/ses-01/anat
+    dwidata=${DATA}/${subj}/ses-01/dwi
+    funcdata=${DATA}/${subj}/ses-01/func
 
     subdir=${OUTPUT_PATH}/${subj}
     echo "subdir:" ${subdir} 
@@ -59,15 +59,15 @@ for i in $(seq 1 ${#subjects[@]}); do
     mkdir -p ${subdir}/fsfast/bold/001
 
     # copy T1w data to output folder
-    cp ${anatdata}/T1w.nii.gz ${subdir}/anat/${subj}_T1w.nii.gz
+    cp ${anatdata}/${subj}_ses-01_T1w.nii.gz ${subdir}/anat/${subj}_T1w.nii.gz
 
     # copy eddy-corrected DWI data to output folder
-    cp ${dwidata}/dwi.bval ${subdir}/dwi/${subj}_dwi.bval
-    cp ${dwidata}/dwi.bvec ${subdir}/dwi/${subj}_dwi.bvec
-    cp ${dwidata}/dwi.nii.gz ${subdir}/dwi/${subj}_dwi.nii.gz
+    cp ${dwidata}/bvals ${subdir}/dwi/${subj}_ses-01_dwi.bval
+    cp ${dwidata}/bvecs ${subdir}/dwi/${subj}_ses-01_dwi.bvec
+    cp ${dwidata}/dwi.nii.gz ${subdir}/dwi/${subj}_ses-01_dwi.nii.gz
 
     # copy RAW fMRI data to output folder
-    cp ${funcdata}/task-rest.nii.gz ${subdir}/fsfast/bold/001/f.nii.gz
+    cp ${funcdata}/${subj}_ses-01_task-rest_bold.nii.gz ${subdir}/fsfast/bold/001/f.nii.gz
     
     cd ${subdir}
     mkdir -p dwi_pipeline

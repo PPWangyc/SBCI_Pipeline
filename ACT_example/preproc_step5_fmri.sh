@@ -51,7 +51,7 @@ mkanalysis-sess -analysis fc.surface.lh \
     -mcextreg \
     -polyfit 1 \
     -fsd bold \
-    -TR 2.5 \
+    -TR 1.01 \
     -stc siemens \
     -hpf 0.009 \
     -lpf 0.08 \
@@ -69,7 +69,7 @@ mkanalysis-sess -analysis fc.surface.rh \
     -mcextreg \
     -polyfit 1 \
     -fsd bold \
-    -TR 2.5 \
+    -TR 1.01 \
     -stc siemens \
     -hpf 0.009 \
     -lpf 0.08 \
@@ -87,7 +87,7 @@ mkanalysis-sess -analysis fc.mni \
     -mcextreg \
     -polyfit 1 \
     -fsd bold \
-    -TR 2.5 \
+    -TR 1.01 \
     -stc siemens \
     -hpf 0.009 \
     -lpf 0.08 \

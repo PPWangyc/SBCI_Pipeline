@@ -9,4 +9,4 @@ def get_subfolders(path,output):
         for item in l:
             f.write("%s\n" % item)
 
-get_subfolders('/scratch/ywang330/ACT', './ACT.txt')
+get_subfolders('/scratch/tbaran2_lab/ACT_BIDS', './ACT.txt')

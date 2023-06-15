@@ -13,5 +13,6 @@ module load dcm2niix
 module load pigz/2.6 
 module load anaconda
 module load git
+module load unzip
 
 conda activate convert

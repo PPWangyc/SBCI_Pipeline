@@ -11,6 +11,8 @@ OUTPUT_BIDS_PATH=${5}
 source sbci_config
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
+# mkdir -p ${OUTPUT_BIDS_PATH}/sub-${screen_id}/ses-${session}/
+unzip ${dicom_dir_path}/*zip -d ${dicom_dir_path}
 dcm2bids -d $dicom_dir_path -p ${screen_id} -s $session -c $CONFIG_PATH -o $OUTPUT_BIDS_PATH
 
 # not necessary for this example

@@ -20,8 +20,8 @@ FODF_BVALS=(0 1000 2000)
 # Change these to point to your local installation of SBCI
 ###########################################################################################
 
-PSC_PATH=/home/ywang330/PSC_Pipeline/
-SBCI_PATH=/home/ywang330/SBCI_Pipeline/
+PSC_PATH=/home/users/ppwang/PSC_Pipeline/
+SBCI_PATH=/home/users/ppwang/SBCI_Pipeline/
 FREESURFER_PATH=/software/freesurfer/6.0.0/
 OUTPUT_PATH=/scratch/users/ppwang/ACT_BIDS/SBCI_AVG
 

@@ -3,11 +3,11 @@
 #SBATCH --mem-per-cpu=10gb
 
 IN=ACT.txt
-OUT=/scratch/tbaran2_lab/ACT_BIDS/SBCI_AVG
-SCRIPTS=/home/ywang330/SBCI_Pipeline/ACT_example
+OUT=/scratch/users/ppwang/ACT_BIDS/SBCI_AVG
+SCRIPTS=/home/users/ppwang/SBCI_Pipeline/sherlock_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI
-export SBCI_CONFIG=/home/ywang330/SBCI_Pipeline/ACT_example/sbci_config
+export SBCI_CONFIG=/home/users/ppwang/SBCI_Pipeline/sherlock_example/sbci_config
 
 # CHANGE FOR SPECIFIC SBATCH OPTIONS
 OPTIONS=""

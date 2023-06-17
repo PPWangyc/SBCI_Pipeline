@@ -22,7 +22,7 @@ FODF_BVALS=(0 1000 2000)
 
 PSC_PATH=/home/users/ppwang/PSC_Pipeline/
 SBCI_PATH=/home/users/ppwang/SBCI_Pipeline/
-FREESURFER_PATH=/software/freesurfer/6.0.0/
+FREESURFER_PATH=/share/software/user/open/freesurfer/6.0.1/
 OUTPUT_PATH=/scratch/users/ppwang/ACT_BIDS/SBCI_AVG
 
 ###########################################################################################

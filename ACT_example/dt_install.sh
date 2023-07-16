@@ -14,5 +14,6 @@ module load pigz/2.6
 module load anaconda
 module load git
 module load unzip
+module load jq
 
 conda activate convert

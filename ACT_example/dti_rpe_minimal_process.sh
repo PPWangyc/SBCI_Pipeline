@@ -30,6 +30,7 @@ PA_BVEC=$5 # bvec file for PA not use
 PA_BVAL=$6 # bval file for PA not use
 ANAT=$7 # T1 anatomical
 BIDS_PATH=$8 # BIDS path
+TotalReadoutTime=$9
 ########################### STEP 0 ###################################
 #	              TO-DO before preprocessing (only once)          	 #
 ######################################################################
@@ -100,7 +101,7 @@ mrcat mean_b0_AP.mif mean_b0_PA.mif -axis 3 b0_pair.mif
 
 # Run dwipreproc (wrapper for eddy and topup). *CHANGE READOUT TIME based on TotalReadoutTime in the AP/PA JSON file*
 # CogTE = 0.0476
-readout_time=0.0476
+readout_time=$TotalReadoutTime
 dwifslpreproc dwi_den.mif dwi_den_preproc.mif -nocleanup -pe_dir AP -rpe_pair -se_epi b0_pair.mif -readout_time $readout_time -align_seepi # -align_seepi ensures that the first volume in the series provided to topup is also the first volume in the series provided to eddy to make sure the volumes are aligned.
 
 

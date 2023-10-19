@@ -3,7 +3,7 @@
 #SBATCH --mem-per-cpu=10gb
 
 IN=ACT.txt
-OUT=/scratch/tbaran2_lab/ACT_BIDS_2/SBCI_AVG
+OUT=/scratch/tbaran2_lab/ACT_BIDS_UR/SBCI_AVG
 SCRIPTS=/home/ywang330/SBCI_Pipeline/ACT_example
 
 # CHANGE LOCATION TO YOUR SOURCE FILE

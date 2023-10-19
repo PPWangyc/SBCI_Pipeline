@@ -5,7 +5,7 @@
 # IN=CogTE1001
 # OUT=/scratch/tbaran2_lab/CogTE
 IN=ACT.txt
-DATA=/scratch/tbaran2_lab/ACT_BIDS_2
+DATA=/scratch/tbaran2_lab/ACT_BIDS_UR
 SCRIPTS=/home/ywang330/SBCI_Pipeline/ACT_example
 
 # CHANGE LOCATION TO THE CONFIGURATION FILE FOR SBCI

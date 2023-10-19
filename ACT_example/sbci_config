@@ -23,7 +23,7 @@ FODF_BVALS=(0 1000 2000)
 PSC_PATH=/home/ywang330/PSC_Pipeline/
 SBCI_PATH=/home/ywang330/SBCI_Pipeline/
 FREESURFER_PATH=/software/freesurfer/6.0.0/
-OUTPUT_PATH=/scratch/tbaran2_lab/ACT_BIDS_2/SBCI_AVG
+OUTPUT_PATH=/scratch/tbaran2_lab/ACT_BIDS_UR/SBCI_AVG
 
 ###########################################################################################
 # SC options: N_RUN number of times to run SET in parallel (SET)

@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -t 3-3:00:00 
 #SBATCH --mem-per-cpu=32gb
+#SBATCH --cpus-per-task=8
 
 # Written by Andrew Jahn, University of Michigan, 02.25.2019
 # Updated 07.10.2020 to incorporate changes from MRtrix version 3.0.1

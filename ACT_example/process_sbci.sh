@@ -42,6 +42,7 @@ echo "Processing ${#subjects[@]} subject(s)"
 echo "Beginning processing of SBCI grid: $(date)"
 STEP1=$(sb ${OPTIONS} --time=4:00:00 --mem=4g -c 8 --job-name=$JID.step1 \
     --export=ALL,SBCI_CONFIG \
+    --error=sbci_step1_process_grid.err \
     --output=sbci_step1_process_grid.log ${SCRIPTS}/sbci_step1_process_grid.sh)
 
 sleep 0.01
@@ -57,6 +58,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     STEP2=$(sb ${OPTIONS} --time=20:00:00 --mem=20g -c 8 --job-name=$JID.step2.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step2_prepare_set.log \
+        --error=sbci_step2_prepare_set.err \
         --dependency=afterok:${STEP1} ${SCRIPTS}/sbci_step2_prepare_set.sh)
 
     STEP3=()
@@ -64,6 +66,7 @@ for i in $(seq 1 ${#subjects[@]}); do
         STEP3+=($(sb ${OPTIONS} --time=40:00:00 --mem=20g -c 8 --job-name=$JID.step3-4.${subjects[$idx]} \
             --export=ALL,SBCI_CONFIG \
             --output=sbci_step3_set_${RUN}.log \
+            --error=sbci_step3_set_${RUN}.err \
             --dependency=afterok:${STEP2} ${SCRIPTS}/sbci_step3_run_set.sh $RUN))
 
     done
@@ -71,16 +74,19 @@ for i in $(seq 1 ${#subjects[@]}); do
     STEP4=$(sb ${OPTIONS} --time=4:00:00 --mem=4g -c 8 --job-name=$JID.step3-4.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step4_process_surfaces.log \
+        --error=sbci_step4_process_surfaces.err \
         --dependency=singleton ${SCRIPTS}/sbci_step4_process_surfaces.sh)
 
     STEP5=$(sb ${OPTIONS} --time=20:00:00 --mem=20g -c 8 --job-name=$JID.step5.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step5_structural.log \
+        --error=sbci_step5_structural.err \
         --dependency=afterok:${STEP4} ${SCRIPTS}/sbci_step5_structural.sh)
 
     STEP6=$(sb ${OPTIONS} --time=10:00:00 --mem=20g -c 8 --job-name=$JID.step6.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step6_functional.log \
+        --error=sbci_step6_functional.err \
         --dependency=afterok:${STEP5} ${SCRIPTS}/sbci_step6_functional.sh)
 
     cd ${ROOT}

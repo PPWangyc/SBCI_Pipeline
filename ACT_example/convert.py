@@ -5,9 +5,9 @@ def get_folder_list(path):
     return [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
 ACT_PATH = '/scratch/tbaran2_lab/ACT/data/dicoms'
 CONFIG_PATH = os.path.join(ACT_PATH,'config', 'config.json')
-OUTPUT_BIDS_PATH = os.path.join('/scratch/tbaran2_lab/ACT_BIDS_UR')
+OUTPUT_BIDS_PATH = os.path.join('/scratch/tbaran2_lab/ACT_BIDS_UMN')
 session='01'
-dicom_dirs = get_folder_list(os.path.join(ACT_PATH, 'UR'))
+dicom_dirs = get_folder_list(os.path.join(ACT_PATH, 'UMN'))
 
 def count_folders(path):
     count = 0
@@ -48,7 +48,7 @@ if not os.path.exists(OUTPUT_BIDS_PATH):
 print(len(dicom_dirs))
 for dicom_dir in dicom_dirs:
     screen_id = dicom_dir.split('_')[2][:4]
-    dicom_dir_path = os.path.join(ACT_PATH, 'UR', dicom_dir)
+    dicom_dir_path = os.path.join(ACT_PATH, 'UMN', dicom_dir)
 
     command = 'sbatch convert_step1.sh {} {} {} {} {}'.format(dicom_dir_path, screen_id, session,CONFIG_PATH, OUTPUT_BIDS_PATH)
     print(command)

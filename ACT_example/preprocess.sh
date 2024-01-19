@@ -100,7 +100,7 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     cd ..
 
-    STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=64 --job-name=$JID.${subjects[$idx]}.preproc.step5 \
+    STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=64g --job-name=$JID.${subjects[$idx]}.preproc.step5 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step5_fmri.log \
         --error=preproc_step5_fmri.err \

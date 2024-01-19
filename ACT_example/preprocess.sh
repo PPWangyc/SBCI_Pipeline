@@ -80,19 +80,19 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     cd dwi_pipeline
 
-    STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=20g -c 8 --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
+    STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=64g  --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step2_t1_dwi_registration.log \
         --error=preproc_step2_t1_dwi_registration.err \
         --dependency=afterok:${STEP1} ${SCRIPTS}/preproc_step2_t1_dwi_registration.sh)
 
-    STEP3=$(sb $OPTIONS --time=4-0:00:00 --mem=20g -c 8 --job-name=$JID.${subjects[$idx]}.${j}.preproc.step3 \
+    STEP3=$(sb $OPTIONS --time=4-0:00:00 --mem=84g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step3 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step3_t1_freesurfer.log \
         --error=preproc_step3_t1_freesurfer.err \
         --dependency=afterok:${STEP2} ${SCRIPTS}/preproc_step3_t1_freesurfer.sh)
 
-    STEP4=$(sb $OPTIONS --time=4-0:00:00 --mem=20g -c 8 --job-name=$JID.${subjects[$idx]}.${j}.preproc.step4 \
+    STEP4=$(sb $OPTIONS --time=4-0:00:00 --mem=32g --job-name=$JID.${subjects[$idx]}.${j}.preproc.step4 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step4_fodf_estimation.log \
         --error=preproc_step4_fodf_estimation.err \
@@ -100,7 +100,7 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     cd ..
 
-    STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=10g -c 8 --job-name=$JID.${subjects[$idx]}.preproc.step5 \
+    STEP5=$(sb $OPTIONS --time=4-0:00:00 --mem=64 --job-name=$JID.${subjects[$idx]}.preproc.step5 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step5_fmri.log \
         --error=preproc_step5_fmri.err \

@@ -40,7 +40,7 @@ fi
 echo "Processing ${#subjects[@]} subject(s)"
 
 echo "Beginning processing of SBCI grid: $(date)"
-STEP1=$(sb ${OPTIONS} --time=4:00:00 --mem=4g -c 8 --job-name=$JID.step1 \
+STEP1=$(sb ${OPTIONS} --time=4:00:00 --mem=64g --job-name=$JID.step1 \
     --export=ALL,SBCI_CONFIG \
     --error=sbci_step1_process_grid.err \
     --output=sbci_step1_process_grid.log ${SCRIPTS}/sbci_step1_process_grid.sh)
@@ -55,7 +55,7 @@ for i in $(seq 1 ${#subjects[@]}); do
     cd ${OUT}/${subjects[$idx]}
 
     echo "Placing subject ${subjects[$idx]} in queue"
-    STEP2=$(sb ${OPTIONS} --time=20:00:00 --mem=20g -c 8 --job-name=$JID.step2.${subjects[$idx]} \
+    STEP2=$(sb ${OPTIONS} --time=20:00:00 --mem=64g --job-name=$JID.step2.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step2_prepare_set.log \
         --error=sbci_step2_prepare_set.err \
@@ -63,7 +63,7 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     STEP3=()
     for ((RUN = 1; RUN <= N_RUNS; RUN++)); do
-        STEP3+=($(sb ${OPTIONS} --time=40:00:00 --mem=20g -c 8 --job-name=$JID.step3-4.${subjects[$idx]} \
+        STEP3+=($(sb ${OPTIONS} --time=40:00:00 --mem=64g -c 2 --job-name=$JID.step3-4.${subjects[$idx]} \
             --export=ALL,SBCI_CONFIG \
             --output=sbci_step3_set_${RUN}.log \
             --error=sbci_step3_set_${RUN}.err \
@@ -71,19 +71,19 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     done
 
-    STEP4=$(sb ${OPTIONS} --time=4:00:00 --mem=4g -c 8 --job-name=$JID.step3-4.${subjects[$idx]} \
+    STEP4=$(sb ${OPTIONS} --time=4:00:00 --mem=64g --job-name=$JID.step3-4.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step4_process_surfaces.log \
         --error=sbci_step4_process_surfaces.err \
         --dependency=singleton ${SCRIPTS}/sbci_step4_process_surfaces.sh)
 
-    STEP5=$(sb ${OPTIONS} --time=20:00:00 --mem=20g -c 8 --job-name=$JID.step5.${subjects[$idx]} \
+    STEP5=$(sb ${OPTIONS} --time=20:00:00 --mem=64g --job-name=$JID.step5.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step5_structural.log \
         --error=sbci_step5_structural.err \
         --dependency=afterok:${STEP4} ${SCRIPTS}/sbci_step5_structural.sh)
 
-    STEP6=$(sb ${OPTIONS} --time=10:00:00 --mem=20g -c 8 --job-name=$JID.step6.${subjects[$idx]} \
+    STEP6=$(sb ${OPTIONS} --time=10:00:00 --mem=64g -c 4 --job-name=$JID.step6.${subjects[$idx]} \
         --export=ALL,SBCI_CONFIG \
         --output=sbci_step6_functional.log \
         --error=sbci_step6_functional.err \

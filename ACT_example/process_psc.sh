@@ -78,7 +78,7 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     echo "Placing subject ${subjects[$idx]} in queue"
 
-    STEP1=$(sb $OPTIONS --time=96:00:00 --mem=128g --job-name=$JID.step1 \
+    STEP1=$(sb $OPTIONS --time=96:00:00 --mem=128g -c 2 --job-name=$JID.step1 \
         --export=ALL,SBCI_CONFIG \
         --output=psc_step1_tractography.log \
         --error=psc_step1_tractography.err \

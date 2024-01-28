@@ -80,7 +80,7 @@ for i in $(seq 1 ${#subjects[@]}); do
 
     cd dwi_pipeline
 
-    STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=64g -c 2  --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
+    STEP2=$(sb $OPTIONS --time=4-0:00:00 --mem=64g -c 4  --job-name=$JID.${subjects[$idx]}.${j}.preproc.step2 \
         --export=ALL,SBCI_CONFIG \
         --output=preproc_step2_t1_dwi_registration.log \
         --error=preproc_step2_t1_dwi_registration.err \
